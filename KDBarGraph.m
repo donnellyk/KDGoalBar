@@ -121,6 +121,7 @@
     UIImage *barBackground;
     int numBars;
     int margin;
+    int cornerRadius;
     UIFont *labelFont;
     
     if (mode == Week) {
@@ -128,11 +129,13 @@
         barBackground = [UIImage imageNamed:@"graph_week"];
         margin = weekMargin;
         labelFont = [UIFont fontWithName:@"Futura-CondensedMedium" size:16];
+        cornerRadius = 3;
     } else {
         numBars = 12;
         barBackground = [UIImage imageNamed:@"graph_year"];
         margin = yearMargin;
         labelFont = [UIFont fontWithName:@"Futura-CondensedMedium" size:14];
+        cornerRadius = 5;
     }
     
     [labelArray makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -145,13 +148,13 @@
         
         CALayer *bar = [CALayer layer];
         bar.backgroundColor = [UIColor colorWithRed:99/256.0 green:183/256.0 blue:70/256.0 alpha:.5].CGColor;
-        bar.cornerRadius = 5;
+        bar.cornerRadius = cornerRadius;
         
         CGRect frame;
         frame.size.width = barBackground.size.width;
-        frame.size.height = barBackground.size.height * percentFull;
+        frame.size.height = MAX(barBackground.size.height * percentFull-1, 0);
         frame.origin.x = nextOrig.x;
-        frame.origin.y = barBackground.size.height - frame.size.height;
+        frame.origin.y = barBackground.size.height - frame.size.height-1;
         bar.frame = frame;
         
         [barLayer addSublayer:bar];

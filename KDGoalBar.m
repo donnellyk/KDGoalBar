@@ -142,6 +142,7 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     CGPoint thisPoint = [[touches anyObject] locationInView:self];
 
+
     if (allowTap && thumbLayer.hidden) {        
         CGFloat adjustedAngle = toDegrees([self angleBetweenCenterAndPoint:thisPoint]);
 

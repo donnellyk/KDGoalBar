@@ -15,6 +15,7 @@
 @synthesize percent, color;
 
 -(void)drawInContext:(CGContextRef)ctx {
+    
     CGPoint center = CGPointMake(self.frame.size.width / (2), self.frame.size.height / (2));
 
     CGFloat delta = toRadians(360 * percent);
