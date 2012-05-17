@@ -8,8 +8,8 @@
 
 #import "KDBarGraph.h"
 
-#define yearMargin 7
-#define weekMargin 12
+#define yearMargin 13
+#define weekMargin 24
 #define stdWidth 320
 #define stdHeight 170
 
@@ -68,7 +68,7 @@
     [graphLayer removeFromSuperlayer];
     graphLayer = [CALayer layer];
     
-    CGPoint nextOrig = CGPointMake(0, 0);
+    
     UIImage *barBackground;
     int numBars;
     int margin; 
@@ -83,8 +83,9 @@
         margin = yearMargin;
     }
     
+    CGPoint nextOrig = CGPointMake(10, 0);
+    
     for (int i = 0; i < numBars; i++) {
-        nextOrig.x += margin;
         
         CALayer *barImage = [CALayer layer];
         barImage.contentsScale = [[UIScreen mainScreen] scale];
@@ -117,7 +118,10 @@
         }
     }
     
-    CGPoint nextOrig = CGPointMake(0, 0);
+    if (largest == 0) {
+        return;
+    }
+    
     UIImage *barBackground;
     int numBars;
     int margin;
@@ -141,9 +145,10 @@
     [labelArray makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [labelArray removeAllObjects];
     
-    for (int i = 0; i < numBars; i++) {
-        nextOrig.x += margin;
-        
+    CGPoint nextOrig = CGPointMake(10, 0);
+
+    
+    for (int i = 0; i < numBars; i++) {        
         CGFloat percentFull = [[values objectAtIndex:i] floatValue] / largest;
         
         CALayer *bar = [CALayer layer];
@@ -162,6 +167,7 @@
         UILabel *label = [[UILabel alloc] init];
         
         label.textColor = [UIColor colorWithRed:.18 green:.18 blue:.18 alpha:1.0];
+        label.backgroundColor = [UIColor clearColor];
         label.font = labelFont;
         label.textAlignment = UITextAlignmentCenter;
         label.text = [NSString stringWithFormat:@"%i", [[values objectAtIndex:i] intValue]];
