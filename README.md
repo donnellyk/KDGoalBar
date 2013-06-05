@@ -3,13 +3,24 @@ KDGoalBar
 
 Simple circular progress bar &amp; bar chart.
 
-The project comes with a fully functional example using Storyboards. To add a circular progress bar programatically to an existing view, do the following:
+The project comes with a fully functional example using Storyboards.
 
-Assuming your drawing the progress bars on the main view of your root view controller called ViewController:
+To add a Progress Bar programatically to an existing view, the following code assumes you are drawing the progress bars on the main view of your root view controller, which is called ViewController.
 
+First, make sure to add all the required files:
+* SoundPlayer.(h/m)
+* KDBarGraph.(h/m)
+* KDGoalBar.(h/m)
+* KDGoalBarPercentLayer.(h/m)
+* All PNG files contained in the "images" folder
+
+The following frameworks are also required:
+* QuartzCore
+* AudioToolbox
+* CoreGraphics
 
 Your header file, ViewController.h:
-```c++
+```objective-c
 #import <UIKit/UIKit.h>
 #import "KDGoalBar.h"
 
@@ -22,7 +33,7 @@ Your header file, ViewController.h:
 ```
 
 Your implementation file, should look like this:
-```c++
+```objective-c
 
 #import "ViewController.h"
 
@@ -30,7 +41,8 @@ Your implementation file, should look like this:
 
 - (void)viewDidLoad
 {
-    // Frame coordinates are arbitrary to make the example shorter
+    // Frame coordinates are arbitrary to make this code example shorter
+    // You could use "self.view.frame.size" to place them in the right position
     CGRect goalBarFrame = CGRectMake(80, 10, 177, 177);
     KDGoalBar *gb = [[KDGoalBar alloc] initWithFrame:goalBarFrame];
     percentGoalBar = gb;
