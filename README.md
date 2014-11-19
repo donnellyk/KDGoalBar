@@ -1,3 +1,8 @@
+This control was born out of the heady days of iOS 5 & 6. Needless to say, the iOS and design communities have moved on. Similar, better controls can be found [here](https://www.cocoacontrols.com/search?utf8=✓&q=circular).
+
+I'm leaving the files available because I believe there is something to be learned from every piece of code, even the bad ones that make tons of mistakes (Did I really use an NSTimer for an animation?! I'm sorry! I didn't know any better!)
+
+
 KDGoalBar
 =========
 
